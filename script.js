@@ -66,6 +66,21 @@ songItems.forEach((element, index) => {
 
 masterPlay.addEventListener('click', () => {
   playSong(songIndex);
+  if (!audioElement.paused) {
+    audioElement.pause();
+    masterPlay.classList.remove('fa-pause-circle');
+    masterPlay.classList.add('fa-play-circle');
+    gif.style.opacity = 0;
+    // audioElement.src = `songs/${songIndex+1}.mp3`;
+audioElement.src = `songs/1.mp3`;
+masterSongName.innerText = songs[songIndex].songName;
+audioElement.currentTime = 0;
+audioElement.play();
+masterPlay.classList.remove('fa-play-circle');
+masterPlay.classList.add('fa-pause-circle');
+
+  }
+  
 });
 
 audioElement.addEventListener('timeupdate', () => {
@@ -130,7 +145,8 @@ document.getElementById('previous').addEventListener('click', ()=>{
     else{
         songIndex -= 1;
     }
-    audioElement.src = `songs/${songIndex+1}.mp3`;
+    // audioElement.src = `songs/${songIndex+1}.mp3`;
+    audioElement.src = `songs/1.mp3`;
     masterSongName.innerText = songs[songIndex].songName;
     audioElement.currentTime = 0;
     audioElement.play();
